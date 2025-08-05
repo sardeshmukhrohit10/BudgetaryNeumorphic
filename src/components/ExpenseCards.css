@@ -1,0 +1,42 @@
+.expense-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: #f7f8fd;
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 6px 6px 10px #dcdcdc, -6px -6px 10px #ffffff;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.icon-container {
+  background: #f7f8fd;
+  padding: 0.75rem;
+  border-radius: 12px;
+  box-shadow: 6px 6px 10px #dcdcdc, -6px -6px 10px #ffffff;
+  color: #925eff;
+  font-size: 1.2rem;
+}
+
+.card h3 {
+  color: #925eff;
+  margin: 0.3rem 0;
+}
+
+.card p {
+  font-size: 0.9rem;
+  margin: 0;
+  color: #666;
+}
