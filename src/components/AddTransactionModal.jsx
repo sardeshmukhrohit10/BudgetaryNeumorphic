@@ -1,5 +1,3 @@
-
-// AddTransactionModal.jsx
 import React, { useState } from "react";
 import "./AddTransactionModal.css";
 
@@ -58,7 +56,7 @@ const handleSubmit = (e) => {
             <option value="">Select a category</option>
             <option>Food & Groceries</option>
             <option>Health Insurance</option>
-            <option>Travel</option>
+            <option>Travel Expenses</option>
             <option>Rent</option>
             <option>Emergency Expenses</option>
             <option>Education</option>

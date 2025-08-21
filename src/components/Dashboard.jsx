@@ -28,13 +28,23 @@ function Dashboard() {
     <div className="dashboard">
       <div className="dashboard-main">
         <WelcomeCard income={income} expense={expense} balance={balance} />
-        <ExpenseCards />
+        
+        {/* Pass transactions here */}
+        <ExpenseCards transactions={transactions} />
+
         <button className="add-transaction" onClick={() => setShowModal(true)}>
           + Add Transaction
         </button>
       </div>
+
       <RecentTransactions transactions={transactions} />
-      {showModal && <AddTransactionModal onClose={() => setShowModal(false)} onSubmit={addTransaction} />}
+
+      {showModal && (
+        <AddTransactionModal
+          onClose={() => setShowModal(false)}
+          onSubmit={addTransaction}
+        />
+      )}
     </div>
   );
 }

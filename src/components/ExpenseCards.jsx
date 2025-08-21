@@ -1,31 +1,51 @@
 import React from "react";
-import { FaBolt, FaGraduationCap, FaPlane, FaShoppingCart, FaHandHoldingHeart, FaGlassCheers } from "react-icons/fa";
+import { 
+  FaBolt, 
+  FaGraduationCap, 
+  FaPlane, 
+  FaShoppingCart, 
+  FaHandHoldingHeart, 
+  FaGlassCheers, 
+
+} from "react-icons/fa";
 import "./ExpenseCards.css";
 
-const data = [
-  { category: "Emergency Expenses", amount: 50, change: "+12%", icon: <FaBolt /> },
-  { category: "Education", amount: 20, change: "+50%", icon: <FaGraduationCap /> },
-  { category: "Travel Expenses", amount: 100, change: "-20%", icon: <FaPlane /> },
-  { category: "Food & Groceries", amount: 150, change: "+45%", icon: <FaShoppingCart /> },
-  { category: "Donation", amount: 10, change: "-15%", icon: <FaHandHoldingHeart /> },
-  { category: "Party", amount: 150, change: "+50%", icon: <FaGlassCheers /> },
-];
+function ExpenseCards({ transactions = [] }) {
+  const categories = {
+    "Emergency Expenses": <FaBolt />,
+    "Education": <FaGraduationCap />,
+    "Travel Expenses": <FaPlane />,
+    "Food & Groceries": <FaShoppingCart />,
+    "Donation": <FaHandHoldingHeart />,
+    "Party": <FaGlassCheers />,
 
-function ExpenseCards() {
+  };
+
+  // Prepare card data dynamically
+  const cardData = Object.keys(categories).map((category) => {
+    const total = transactions
+      .filter(txn => txn.type === "Expense" && txn.category === category)
+      .reduce((sum, txn) => sum + parseFloat(txn.amount), 0);
+
+    return {
+      category,
+      total,
+      icon: categories[category]
+    };
+  });
+
   return (
     <div className="expense-cards">
-      {data.map((item, idx) => (
+      {cardData.map((item, idx) => (
         <div className="card" key={idx}>
           <div className="card-header">
             <div className="icon-container">{item.icon}</div>
-            <div>
+            <div className="card-text">
               <h4>{item.category}</h4>
-              <h3>€{item.amount}</h3>
+              <h3>€{item.total.toFixed(2)}</h3>
             </div>
           </div>
-          <p>
-            This month <span style={{ color: item.change.includes("-") ? "red" : "green" }}>{item.change}</span>
-          </p>
+          <p>This month</p>
         </div>
       ))}
     </div>
