@@ -21,7 +21,6 @@ function ExpenseCards({ transactions = [] }) {
 
   };
 
-  // Prepare card data dynamically
   const cardData = Object.keys(categories).map((category) => {
     const total = transactions
       .filter(txn => txn.type === "Expense" && txn.category === category)

@@ -1,35 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AddTransactionModal.css";
 
-function AddTransactionModal({ onClose, onSubmit }) {
+function AddTransactionModal({ onClose, onSubmit, initialTransaction }) {
+  const isEdit = Boolean(initialTransaction);
+
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
   const [type, setType] = useState("Expense");
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
 
-const handleSubmit = (e) => {
-  e.preventDefault();
-  const newTransaction = {
-    description,
-    amount: parseFloat(amount),
-    category,
-    type,
-    date
+  useEffect(() => {
+    if (initialTransaction) {
+      setDescription(initialTransaction.description || "");
+      setAmount(String(initialTransaction.amount ?? ""));
+      setCategory(initialTransaction.category || "");
+      setType(initialTransaction.type || "Expense");
+      setDate(initialTransaction.date || new Date().toISOString().split("T")[0]);
+    }
+  }, [initialTransaction]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newTransaction = {
+      description,
+      amount: parseFloat(amount),
+      category,
+      type, 
+      date
+    };
+    if (typeof onSubmit === "function") onSubmit(newTransaction);
   };
-
-  if (typeof onSubmit === 'function') {
-    onSubmit(newTransaction);
-  }
-
-  onClose(); // close after adding
-};
 
   return (
     <div className="modal-overlay">
       <div className="modal">
-        <h2>Add Transaction</h2>
-        <p>Add a new income or expense transaction to track your finances.</p>
+        <h2>{isEdit ? "Edit Transaction" : "Add Transaction"}</h2>
+        <p>{isEdit ? "Update the transaction details." : "Add a new income or expense to track your finances."}</p>
 
         <form onSubmit={handleSubmit}>
           <label>Description</label>
@@ -72,16 +79,13 @@ const handleSubmit = (e) => {
           </select>
 
           <label>Date</label>
-          <input
-            type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-            required
-          />
+          <input type="date" value={date} onChange={(e) => setDate(e.target.value)} required />
 
           <div className="modal-buttons">
             <button type="button" onClick={onClose} className="cancel-btn">Cancel</button>
-            <button type="submit" className="submit-btn">Add Transaction</button>
+            <button type="submit" className="submit-btn">
+              {isEdit ? "Save Changes" : "Add Transaction"}
+            </button>
           </div>
         </form>
       </div>

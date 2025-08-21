@@ -1,0 +1,143 @@
+/* page container */
+.th-page {
+  flex: 1;
+  padding: 20px;
+}
+
+/* toolbar under the card */
+.th-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin: 12px 0 14px;
+}
+
+/* --- Search with icon --- */
+.th-search-wrap {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: #fff;
+  min-width: 320px;
+  flex: 1 1 360px;
+}
+.th-search-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  color: #a678f7;
+  flex-shrink: 0;
+}
+.th-search-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 14px;
+  width: 100%;
+}
+.th-search-input::placeholder { color: #9ca3af; }
+
+/* dropdowns */
+.th-select {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 14px;
+}
+
+/* add button */
+.th-add-btn {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #7C3AED; 
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+.th-add-btn:hover { background: #1d4ed8; }
+
+/* ---------- CENTER THE TABLE ---------- */
+.th-table-wrap {
+  display: flex;
+  justify-content: center;  /* centers the shell horizontally */
+  width: 100%;
+  margin-top: 12px;
+}
+.th-table-shell {
+  width: 100%;
+  max-width: 1100px;        /* nice readable width */
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  overflow: hidden;         /* keeps rounded corners */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+/* table */
+.th-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.th-table th,
+.th-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #f1f1f1;
+  font-size: 14px;
+  vertical-align: middle;
+}
+.th-table th {
+  background: #f9fafb;
+  font-weight: 600;
+  text-align: left;        /* default header alignment */
+}
+
+/* per-column alignment */
+.left { text-align: left; }
+.center { text-align: center; }
+.right { text-align: right; }
+
+/* force Amount & Actions centered (header + body) */
+.th-table th:nth-child(4),
+.th-table td:nth-child(4),
+.th-table th:nth-child(5),
+.th-table td:nth-child(5),
+.th-table th:nth-child(6),
+.th-table td:nth-child(6) {
+  text-align: center;
+}
+
+.empty { text-align: center; padding: 16px; color: #666; }
+
+/* pills & amounts */
+.pill {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #3730a3;
+  font-size: 12px;
+}
+.pill-green { background: #dcfce7; color: #166534; }
+.pill-red   { background: #fee2e2; color: #991b1b; }
+
+.amount-income { color: #15803d; font-weight: 600; }
+.amount-expense { color: #dc2626; font-weight: 600; }
+
+/* actions */
+.th-actions { display: inline-flex; gap: 8px; }
+.th-btn {
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 13px;
+}
+.th-btn:hover { background: #f5f5f5; }
+.th-edit   { border-color: #93c5fd; color: #1d4ed8; }
+.th-delete { border-color: #fca5a5; color: #b91c1c; }

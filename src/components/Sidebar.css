@@ -34,3 +34,18 @@
 .sidebar-btn:hover {
   transform: translateY(-2px);
 }
+
+.sidebar-btn,
+.sidebar-btn:focus,
+.sidebar-btn:active {
+  text-decoration: none;
+  outline: none;
+}
+
+
+.sidebar-btn--active {
+  background: #7C3AED;
+  color: #ffffff;
+  box-shadow: inset 6px 6px 12px #6b21a8, inset -6px -6px 12px #8b5cf6;
+  text-decoration: none;
+}
