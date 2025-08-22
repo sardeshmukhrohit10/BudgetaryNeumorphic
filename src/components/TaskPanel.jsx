@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { startTask, completeTask, buildOtherUiUrl, SURVEY_URL, VARIANT } from "../studylogger";
+import { startTask, completeTask, buildOtherUiUrl, SURVEY_URL, VARIANT, checkpoint } from "../studylogger";
 
 export default function TaskPanel() {
   const [elapsed, setElapsed] = useState(0);
   const [checks, setChecks] = useState({ add:false, edit:false, del:false });
+  const [otherOpened, setOtherOpened] = useState(false);
 
   useEffect(() => {
     startTask();
@@ -25,14 +26,18 @@ export default function TaskPanel() {
     };
   }, []);
 
-  const allDone = checks.add && checks.edit && checks.del;
+  const allTasksDone = checks.add && checks.edit && checks.del;
+  const canFinish = allTasksDone && otherOpened;
 
   const finish = () => {
+    if (!canFinish) return;
     completeTask();
     window.open(SURVEY_URL, "_blank", "noopener");
   };
 
-  const openOther = () => {
+  const openOther = async () => {
+    await checkpoint("neu_to_skeuo");
+    setOtherOpened(true);
     window.open(buildOtherUiUrl(), "_blank", "noopener");
   };
 
@@ -44,27 +49,28 @@ export default function TaskPanel() {
     }}>
       <div style={{fontWeight:700, marginBottom:8}}>{VARIANT.toUpperCase()} — Tasks</div>
       <ol style={{margin:"0 0 8px 16px"}}>
-        <li>{checks.add ? "✅" : "⬜"} Add 1 transactions</li>
+        <li>{checks.add ? "✅" : "⬜"} Add 1 transaction</li>
         <li>{checks.edit ? "✅" : "⬜"} Edit 1 transaction</li>
         <li>{checks.del ? "✅" : "⬜"} Delete 1 transaction</li>
+        <li>{otherOpened ? "✅" : "⬜"} Open Skeuomorphic UI</li>
       </ol>
       <div style={{margin:"6px 0 10px"}}>Time: {(elapsed/1000).toFixed(1)}s</div>
       <div style={{display:"flex", gap:8, alignItems:"center", flexWrap:"wrap"}}>
         <button
           onClick={finish}
-          disabled={!allDone}
+          disabled={!canFinish}
           style={{
-            opacity: allDone?1:0.6, cursor: allDone?"pointer":"not-allowed",
+            opacity: canFinish?1:0.6, cursor: canFinish?"pointer":"not-allowed",
             background:"#635bff", color:"#fff", border:"none", padding:"8px 12px",
             fontWeight:700, borderRadius:10
           }}
+          title={!otherOpened ? "Please open the Skeuomorphic UI first" : ""}
         >
           Done → Open Survey
         </button>
         <button
           onClick={openOther}
           style={{background:"#f3f4f6", border:"1px solid #e5e7eb", padding:"8px 12px", borderRadius:10, fontWeight:600}}
-          title="Go to the other UI (keeps your code)"
         >
           Other UI
         </button>
