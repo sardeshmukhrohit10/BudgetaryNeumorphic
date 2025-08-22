@@ -32,7 +32,7 @@
 
 .summary {
   display: flex;
-  gap: clamp(1rem, 2vw, 2rem);
+  gap: clamp(1rem, 1vw, 1rem);
   align-items: center;
   flex: 1 1 auto;
   flex-wrap: wrap;
