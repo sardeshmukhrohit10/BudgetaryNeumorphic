@@ -1,12 +1,125 @@
+/* ===== App.css (updated) ===== */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   background: #f4f5fb;
-  overflow: hidden;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .app {
   display: flex;
+  min-height: 100vh;
+}
+
+.page {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px 30px;
+}
+
+
+@media (min-width: 1280px) and (max-width: 1700px) {
+  .page {
+    max-width: 1280px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .dashboard {
+    display: grid !important;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  .recent-transactions {
+    width: auto !important;
+    max-width: 520px;
+    min-width: 360px;
+  }
+
+  .summary-row {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(260px, 1fr));
+    gap: 16px;
+  }
+
+  .summary-card {
+    min-width: 280px !important;
+    max-width: 100% !important;
+  }
+
+  .expense-cards,
+  .expense-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(320px, 1fr));
+    column-gap: 16px !important;
+    row-gap: 10px !important;
+  }
+
+  .welcome-card {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 1280px) {
+  .page { max-width: 1152px; }
+
+  .dashboard {
+    display: grid !important;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .summary-row {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(260px, 1fr)) !important;
+    gap: 16px;
+  }
+
+  .expense-cards,
+  .expense-grid {
+    grid-template-columns: repeat(2, minmax(280px, 1fr)) !important;
+  }
+
+  .recent-transactions {
+    max-width: none;
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 992px) {
+  .summary-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  .expense-cards,
+  .expense-grid {
+    grid-template-columns: 1fr !important;
+    column-gap: 0 !important;
+  }
+}
+
+.summary-header { gap: 10px; }
+.add-transaction { white-space: nowrap; }
+.welcome-card .summary { justify-content: flex-start; }
+
+.dashboard,
+.dashboard-body,
+.page {
+  align-items: stretch !important;
+}
+
+@media (min-width: 1200px) {
+  .dashboard,
+  .dashboard-body {
+    display: grid !important;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+  }
 }

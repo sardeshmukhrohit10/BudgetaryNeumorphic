@@ -1,34 +1,25 @@
 .modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
   background: rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 999;
+  padding: 16px; /* allow breathing room on small screens */
 }
 
 .modal {
   background: #fff;
   border-radius: 16px;
   padding: 2rem;
-  width: 400px;
-  max-width: 90%;
+  width: 420px;
+  max-width: 95%;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
-.modal h2 {
-  margin-top: 0;
-  font-size: 1.5rem;
-}
-
-.modal p {
-  color: #555;
-  margin-bottom: 1rem;
-}
+.modal h2 { margin-top: 0; font-size: 1.5rem; }
+.modal p  { color: #555; margin-bottom: 1rem; }
 
 .modal label {
   display: block;
@@ -54,24 +45,25 @@
 
 .modal-buttons {
   display: flex;
+  gap: 10px;
   justify-content: space-between;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
 .cancel-btn,
 .submit-btn {
-  padding: 0.75rem 1.5rem;
+  flex: 1 1 0;
+  padding: 0.75rem 1.25rem;
   font-size: 1rem;
   border-radius: 12px;
   border: none;
   cursor: pointer;
 }
 
-.cancel-btn {
-  background: #f0f0f0;
-}
+.cancel-btn { background: #f0f0f0; color: #222; }
+.submit-btn { background: #925eff; color: #fff; }
 
-.submit-btn {
-  background: #925eff;
-  color: #fff;
+/* slightly larger modal on big monitors */
+@media (min-width: 1600px) {
+  .modal { width: 520px; }
 }

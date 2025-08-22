@@ -1,7 +1,7 @@
 /* page container */
 .th-page {
   flex: 1;
-  padding: 20px;
+  padding: 0; /* use .page wrapper for consistent outer spacing */
 }
 
 /* toolbar under the card */
@@ -13,7 +13,7 @@
   margin: 12px 0 14px;
 }
 
-/* --- Search with icon --- */
+/* Search with icon */
 .th-search-wrap {
   display: flex;
   align-items: center;
@@ -22,7 +22,7 @@
   padding: 8px 10px;
   background: #fff;
   min-width: 320px;
-  flex: 1 1 360px;
+  flex: 1 1 420px;
 }
 .th-search-icon {
   width: 18px;
@@ -54,27 +54,28 @@
   padding: 10px 14px;
   border: none;
   border-radius: 8px;
-  background: #7C3AED; 
+  background: #7C3AED;
   color: #fff;
   font-weight: 600;
   cursor: pointer;
+  white-space: nowrap;
 }
-.th-add-btn:hover { background: #1d4ed8; }
+.th-add-btn:hover { background: #6d28d9; }
 
-/* ---------- CENTER THE TABLE ---------- */
+/* Center the table and cap width on large screens */
 .th-table-wrap {
   display: flex;
-  justify-content: center;  /* centers the shell horizontally */
+  justify-content: center;
   width: 100%;
   margin-top: 12px;
 }
 .th-table-shell {
   width: 100%;
-  max-width: 1100px;        /* nice readable width */
+  max-width: 1200px; /* a bit larger for big monitors */
   background: #fff;
   border: 1px solid #eee;
   border-radius: 12px;
-  overflow: hidden;         /* keeps rounded corners */
+  overflow: hidden;
   box-shadow: 0 2px 6px rgba(0,0,0,0.04);
 }
 
@@ -93,15 +94,15 @@
 .th-table th {
   background: #f9fafb;
   font-weight: 600;
-  text-align: left;        /* default header alignment */
+  text-align: left;
 }
 
-/* per-column alignment */
+/* alignment helpers */
 .left { text-align: left; }
 .center { text-align: center; }
 .right { text-align: right; }
 
-/* force Amount & Actions centered (header + body) */
+/* Force Amount & Actions centered (header + body) */
 .th-table th:nth-child(4),
 .th-table td:nth-child(4),
 .th-table th:nth-child(5),
@@ -141,3 +142,41 @@
 .th-btn:hover { background: #f5f5f5; }
 .th-edit   { border-color: #93c5fd; color: #1d4ed8; }
 .th-delete { border-color: #fca5a5; color: #b91c1c; }
+
+/* Laptop/tablet: enable horizontal scroll to avoid squishing */
+@media (max-width: 992px) {
+  .th-table-shell { border-radius: 10px; }
+  .th-table { display: block; overflow-x: auto; white-space: nowrap; }
+}
+
+/* Mobile: card layout */
+@media (max-width: 600px) {
+  .th-toolbar { gap: 8px; }
+  .th-search-wrap { min-width: unset; flex-basis: 100%; }
+  .th-table { display: block; white-space: normal; }
+  .th-table thead { display: none; }
+  .th-table tbody,
+  .th-table tr,
+  .th-table td { display: block; width: 100%; }
+  .th-table tr {
+    margin-bottom: 12px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 10px;
+  }
+  .th-table td {
+    border: none;
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 6px;
+    text-align: left !important;
+    padding: 8px 10px;
+  }
+  .th-table td:nth-child(1)::before { content: "Description"; color: #666; }
+  .th-table td:nth-child(2)::before { content: "Date"; color: #666; }
+  .th-table td:nth-child(3)::before { content: "Category"; color: #666; }
+  .th-table td:nth-child(4)::before { content: "Type"; color: #666; }
+  .th-table td:nth-child(5)::before { content: "Amount"; color: #666; }
+  .th-table td:nth-child(6)::before { content: "Actions"; color: #666; }
+}
