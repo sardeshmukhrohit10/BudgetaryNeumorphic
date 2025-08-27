@@ -1,10 +1,9 @@
-/* page container */
 .th-page {
   flex: 1;
-  padding: 0; /* use .page wrapper for consistent outer spacing */
+  padding: 0;
+  min-width: 0;
 }
 
-/* toolbar under the card */
 .th-toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -13,7 +12,6 @@
   margin: 12px 0 14px;
 }
 
-/* Search with icon */
 .th-search-wrap {
   display: flex;
   align-items: center;
@@ -40,7 +38,6 @@
 }
 .th-search-input::placeholder { color: #9ca3af; }
 
-/* dropdowns */
 .th-select {
   padding: 10px 12px;
   border: 1px solid #ddd;
@@ -49,7 +46,6 @@
   font-size: 14px;
 }
 
-/* add button */
 .th-add-btn {
   padding: 10px 14px;
   border: none;
@@ -62,7 +58,6 @@
 }
 .th-add-btn:hover { background: #6d28d9; }
 
-/* Center the table and cap width on large screens */
 .th-table-wrap {
   display: flex;
   justify-content: center;
@@ -71,7 +66,7 @@
 }
 .th-table-shell {
   width: 100%;
-  max-width: 1200px; /* a bit larger for big monitors */
+  max-width: 1200px;
   background: #fff;
   border: 1px solid #eee;
   border-radius: 12px;
@@ -79,7 +74,6 @@
   box-shadow: 0 2px 6px rgba(0,0,0,0.04);
 }
 
-/* table */
 .th-table {
   width: 100%;
   border-collapse: collapse;
@@ -97,24 +91,19 @@
   text-align: left;
 }
 
-/* alignment helpers */
 .left { text-align: left; }
 .center { text-align: center; }
 .right { text-align: right; }
 
-/* Force Amount & Actions centered (header + body) */
 .th-table th:nth-child(4),
 .th-table td:nth-child(4),
 .th-table th:nth-child(5),
 .th-table td:nth-child(5),
 .th-table th:nth-child(6),
-.th-table td:nth-child(6) {
-  text-align: center;
-}
+.th-table td:nth-child(6) { text-align: center; }
 
 .empty { text-align: center; padding: 16px; color: #666; }
 
-/* pills & amounts */
 .pill {
   display: inline-block;
   padding: 4px 10px;
@@ -129,7 +118,6 @@
 .amount-income { color: #15803d; font-weight: 600; }
 .amount-expense { color: #dc2626; font-weight: 600; }
 
-/* actions */
 .th-actions { display: inline-flex; gap: 8px; }
 .th-btn {
   padding: 6px 10px;
@@ -143,13 +131,11 @@
 .th-edit   { border-color: #93c5fd; color: #1d4ed8; }
 .th-delete { border-color: #fca5a5; color: #b91c1c; }
 
-/* Laptop/tablet: enable horizontal scroll to avoid squishing */
 @media (max-width: 992px) {
   .th-table-shell { border-radius: 10px; }
   .th-table { display: block; overflow-x: auto; white-space: nowrap; }
 }
 
-/* Mobile: card layout */
 @media (max-width: 600px) {
   .th-toolbar { gap: 8px; }
   .th-search-wrap { min-width: unset; flex-basis: 100%; }

@@ -6,19 +6,20 @@
   align-items: center;
   justify-content: center;
   z-index: 999;
-  padding: 16px; /* allow breathing room on small screens */
+  padding: 16px;
 }
 
 .modal {
   background: #fff;
   border-radius: 16px;
   padding: 2rem;
-  width: 420px;
-  max-width: 95%;
+  width: min(520px, 92vw);
+  max-height: min(84vh, 100dvh - 80px);
+  overflow: auto;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
-.modal h2 { margin-top: 0; font-size: 1.5rem; }
+.modal h2 { margin-top: 0; font-size: clamp(1.25rem, 1.2vw + 1rem, 1.5rem); }
 .modal p  { color: #555; margin-bottom: 1rem; }
 
 .modal label {
@@ -48,11 +49,12 @@
   gap: 10px;
   justify-content: space-between;
   margin-top: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .cancel-btn,
 .submit-btn {
-  flex: 1 1 0;
+  flex: 1 1 160px;
   padding: 0.75rem 1.25rem;
   font-size: 1rem;
   border-radius: 12px;
@@ -62,8 +64,3 @@
 
 .cancel-btn { background: #f0f0f0; color: #222; }
 .submit-btn { background: #925eff; color: #fff; }
-
-/* slightly larger modal on big monitors */
-@media (min-width: 1600px) {
-  .modal { width: 520px; }
-}

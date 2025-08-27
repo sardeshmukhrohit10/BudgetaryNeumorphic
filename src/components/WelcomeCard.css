@@ -13,6 +13,7 @@
 .welcome-left {
   flex: 1 1 360px;
   min-width: 260px;
+  min-height: 0;
 }
 
 .welcome-left h2 {
@@ -26,9 +27,7 @@
   margin-bottom: 0.5rem;
 }
 
-.welcome-left .subtext {
-  color: #666;
-}
+.welcome-left .subtext { color: #666; }
 
 .summary {
   display: flex;
@@ -70,7 +69,6 @@
   color: #a678f7;
 }
 
-/* Tighter stack on tablets/phones */
 @media (max-width: 768px) {
   .welcome-card { padding: 1.25rem; }
   .summary { justify-content: flex-start; }

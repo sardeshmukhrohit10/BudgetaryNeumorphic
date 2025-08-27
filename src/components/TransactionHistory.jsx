@@ -131,7 +131,8 @@ function TransactionHistory({
       </div>
 
       <div className="th-table-wrap">
-        <table className="th-table">
+      <div className="table-scroll">
+          <table className="th-table">
           <thead>
             <tr>
               <th>Description</th>
@@ -185,6 +186,7 @@ function TransactionHistory({
             )}
           </tbody>
         </table>
+      </div>   
       </div>
     </div>
   );

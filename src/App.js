@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useEffect, useMemo, useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
@@ -6,11 +5,10 @@ import Sidebar from "./components/Sidebar";
 import Dashboard from "./components/Dashboard";
 import TransactionHistory from "./components/TransactionHistory";
 import AddTransactionModal from "./components/AddTransactionModal";
-import DeviceGuard from "./components/DeviceGuard";
 import TaskPanel from "./components/TaskPanel";
 import { initStudy, installCustomEventBridges } from "./studylogger";
 
-import "./App.css"; // keep your CSS; .page rules live here (as we discussed)
+import "./App.css";
 
 function App() {
   const [transactions, setTransactions] = useState([]);
@@ -105,11 +103,9 @@ function App() {
 
   return (
     <BrowserRouter>
-      <DeviceGuard>
         <div className="app">
           <Sidebar />
 
-          {/* Consistent-width page wrapper so content stays aligned on every route */}
           <main className="page">
             <Routes>
               <Route index element={<Navigate to="/dashboard" replace />} />
@@ -153,7 +149,6 @@ function App() {
 
           <TaskPanel />
         </div>
-      </DeviceGuard>
     </BrowserRouter>
   );
 }
