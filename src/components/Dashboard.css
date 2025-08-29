@@ -37,3 +37,8 @@
 @media (max-width: 992px) {
   .dashboard { flex-direction: column; gap: 1.25rem; }
 }
+
+@media (max-width: 768px) {
+  .dashboard-container { flex-direction: column; }
+  .dashboard-main { padding-top: 12px; }
+}
